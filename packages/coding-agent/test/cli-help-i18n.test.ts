@@ -34,6 +34,17 @@ describe("root help language initialization", () => {
 		expect(render()).toContain("COMMANDS\n  read  Read a file");
 	});
 
+	it("opts in to the bundled Korean headings without changing other help text", async () => {
+		for (const language of ["ko", "ko-KR", "KO_kr.UTF-8"]) {
+			const output = render(await initializeHelpI18n({ language }));
+			const expected = render().replace("\nUSAGE\n", "\n사용법\n").replace("\nCOMMANDS\n", "\n명령어\n");
+			expect(output).toBe(expected);
+			expect(output).toContain("read  Read a file");
+			expect(output).not.toContain("\u0004");
+		}
+		expect(render(await initializeHelpI18n({ language: "en" }))).toBe(render());
+	});
+
 	it("loads an explicit pack only for an explicitly selected non-English language", async () => {
 		const directory = await fs.mkdtemp(path.join(os.tmpdir(), "omp-help-i18n-"));
 		const packFile = path.join(directory, "custom.json");
