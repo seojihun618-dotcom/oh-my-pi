@@ -2,6 +2,10 @@
 
 ## [Unreleased]
 
+### Added
+
+- Root help can opt in to a custom language pack for its usage and commands headings; English remains the default and invalid packs fall back safely ([#17203](https://github.com/can1357/oh-my-pi/pull/17203) by [@seojihun618-dotcom](https://github.com/seojihun618-dotcom))
+
 ## [18.13.2] - 2026-10-27
 
 ### Added

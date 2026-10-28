@@ -11,6 +11,7 @@
  */
 import * as fs from "node:fs";
 import { parseArgs as nodeParseArgs } from "node:util";
+import { englishSource, type Translator } from "./i18n-core";
 
 /**
  * Streaming startup marker, enabled by `PI_DEBUG_STARTUP`. Local copy of
@@ -293,11 +294,11 @@ export abstract class Command {
 // ---------------------------------------------------------------------------
 
 /** Render full root help: header, default command details, subcommand list. */
-export function renderRootHelp(config: CliConfig<CommandMetadata>): void {
+export function renderRootHelp(config: CliConfig<CommandMetadata>, translate: Translator = englishSource): void {
 	const { bin, version, commands } = config;
 	const lines: string[] = [];
 	lines.push(`${bin} v${version}\n`);
-	lines.push("USAGE");
+	lines.push(translate("USAGE\u0004cli.root-help.usage-heading"));
 	lines.push(`  $ ${bin} [COMMAND]\n`);
 
 	// Show the default command's flags/args/examples inline.
@@ -310,7 +311,7 @@ export function renderRootHelp(config: CliConfig<CommandMetadata>): void {
 	// List visible subcommands
 	const visible = [...commands.entries()].filter(([, C]) => !C.hidden);
 	if (visible.length > 0) {
-		lines.push("COMMANDS");
+		lines.push(translate("COMMANDS\u0004cli.root-help.commands-heading"));
 		const maxLen = Math.max(...visible.map(([n]) => n.length));
 		for (const [name, command] of visible.sort((a, b) => a[0].localeCompare(b[0]))) {
 			lines.push(`  ${name.padEnd(maxLen + 2)}${command.description ?? ""}`);

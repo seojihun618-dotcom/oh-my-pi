@@ -29,6 +29,7 @@ import {
 
 import { declareWorkerHostEntry, installWorkerInbox, isWorkerHostSelector } from "@oh-my-pi/pi-utils/worker-host";
 import { extractProfileFlags } from "./cli/profile-bootstrap";
+import { initializeHelpI18n } from "./cli/help-i18n";
 import {
 	BLOB_BROKER_WORKER_ARG,
 	COMPUTER_WORKER_ARG,
@@ -123,7 +124,11 @@ async function showHelp(config: CliConfig<CommandMetadata>): Promise<void> {
 		import("@oh-my-pi/pi-utils/cli"),
 		import("./cli/help-extra"),
 	]);
-	renderRootHelp(config);
+	const translate = await initializeHelpI18n({
+		language: process.env.OMP_LANG,
+		packFile: process.env.OMP_HELP_LOCALE_FILE,
+	});
+	renderRootHelp(config, translate);
 	const extra = getExtraHelpText();
 	if (extra.trim().length > 0) {
 		process.stdout.write(`\n${extra}\n`);

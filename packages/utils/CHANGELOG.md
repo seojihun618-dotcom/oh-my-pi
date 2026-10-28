@@ -5,6 +5,7 @@
 ### Added
 
 - Added an isolated translation helper with English fallback, semantic contexts, and validated positional placeholders ([#17203](https://github.com/can1357/oh-my-pi/pull/17203) by [@seojihun618-dotcom](https://github.com/seojihun618-dotcom))
+- Root-help consumers can explicitly supply a translator for usage and commands headings without changing other CLI output ([#17203](https://github.com/can1357/oh-my-pi/pull/17203) by [@seojihun618-dotcom](https://github.com/seojihun618-dotcom))
 
 ## [18.13.2] - 2026-10-27
 

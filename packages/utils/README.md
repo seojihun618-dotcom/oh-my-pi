@@ -40,6 +40,11 @@ value. Missing arguments remain literal placeholders, and argument text is never
 interpreted as another template. Malformed packs throw during explicit creation,
 so applications can handle errors before choosing a translator.
 
+`renderRootHelp(config, translator)` from `@oh-my-pi/pi-utils/cli` accepts an
+explicit translator for only its `USAGE` and `COMMANDS` headings. Omitting it
+preserves the existing English output. Command metadata, flags, examples, errors,
+and model-facing text are not translated.
+
 ## Install
 
 ```sh

@@ -18,6 +18,8 @@ export function getExtraHelpText(): string {
   OPENAI_API_KEY             - OpenAI GPT models
   GEMINI_API_KEY             - Google Gemini models
   COPILOT_GITHUB_TOKEN      - GitHub Copilot
+  OMP_LANG                  - Root-help heading language (default: en)
+  OMP_HELP_LOCALE_FILE      - Explicit JSON pack for root-help headings
 
   ${chalk.dim("# Additional LLM Providers")}
   AZURE_OPENAI_API_KEY       - Azure OpenAI models
